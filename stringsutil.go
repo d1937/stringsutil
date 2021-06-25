@@ -133,3 +133,16 @@ func ContainsAny(s string, ss ...string) bool {
 	}
 	return false
 }
+
+
+//判断字符串中是否包含数字
+func IsAlpha(str string) bool {
+	for i := range str {
+		if str[i] < 'A' || str[i] > 'z' {
+			return false
+		} else if str[i] > 'Z' && str[i] < 'a' {
+			return false
+		}
+	}
+	return true
+}
