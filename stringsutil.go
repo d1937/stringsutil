@@ -3,9 +3,28 @@ package stringsutil
 import (
 	"fmt"
 	"strings"
+
+	"golang.org/x/text/encoding/simplifiedchinese"
 )
 
- 
+type Charset string
+
+const (
+	UTF8    = Charset("UTF-8")
+	GB18030 = Charset("GB18030")
+)
+
+func ConvertByte2String(byte []byte, charset Charset) string {
+	var str string
+	switch charset {
+	case GB18030:
+		var decodeBytes, _ = simplifiedchinese.GB18030.NewDecoder().Bytes(byte)
+		str = string(decodeBytes)
+	default:
+		str = string(byte)
+	}
+	return str
+}
 
 func Between(value string, a string, b string) string {
 	posFirst := strings.Index(value, a)
@@ -133,7 +152,6 @@ func ContainsAny(s string, ss ...string) bool {
 	}
 	return false
 }
-
 
 //判断字符串中是否包含数字
 func IsAlpha(str string) bool {
