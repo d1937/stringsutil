@@ -3,6 +3,7 @@ package stringsutil
 import (
 	"encoding/base64"
 	"fmt"
+	"regexp"
 	"strings"
 
 	"golang.org/x/text/encoding/simplifiedchinese"
@@ -185,4 +186,9 @@ func Base64Decode(str string) (string, error) {
 		return "", err
 	}
 	return string(data), nil
+}
+
+func ReplaceAll(s string, old string, new string) string {
+	re := regexp.MustCompile(`(?i)` + old)
+	return re.ReplaceAllString(s, new)
 }
