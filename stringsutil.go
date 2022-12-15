@@ -155,6 +155,17 @@ func ContainsAny(s string, ss ...string) bool {
 	return false
 }
 
+
+// InArray returns true  
+func InArray(s string, ss ...string) bool {
+	for _, sss := range ss {
+		if s == sss {
+			return true
+		}
+	}
+	return false
+}
+
 //判断字符串中是否包含数字
 func IsAlpha(str string) bool {
 	for i := range str {
